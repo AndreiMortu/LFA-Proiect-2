@@ -36,16 +36,16 @@ def nfa_to_dfa(nfa, start_state, alphabet):
 def write_dfa(dfa, filename, final_states):
     with open(filename, 'w') as file:
         initial = next(iter(dfa)) 
-        file.write(f"START STATE: {initial}\n\n")
+        file.write(f"Stare initiala: {initial}\n\n")
 
         final2 = [state for state in dfa if any(x in state for x in final_states)]  
-        file.write(f"FINAL STATES: {', '.join(str(state) for state in final2)}\n\n")
+        file.write(f"Stari finale: {', '.join(str(state) for state in final2)}\n\n")
 
         for state in dfa: 
             if state != ():
                 for letter in dfa[state]: 
                     next_state = dfa[state][letter]
-                    file.write(f"{state} --({letter})--> {next_state}\n")
+                    file.write(f"{state} --({letter})-> {next_state}\n")
                 file.write("\n")
 
 nfa = {}
@@ -56,7 +56,7 @@ with open('input.txt') as file:
     for line in file:   
         line = line.strip().split(' ')
         first, letter, second = line  
-        if letter == 'lambda': 
+        if letter == 'λ': 
             letter = 'x'
         if first not in nfa:
             nfa[first] = {}
